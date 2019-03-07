@@ -20,8 +20,3 @@ A ZIP file can be downloaded from the [TechNet Gallery](https://gallery.technet.
 
 ## Use
 To use the tool, extract the ZIP file, right-click the ConfigMgr Client TCP Port Tester.ps1 and run with PowerShell.
-To run against the local machine, you must run the tool elevated. To do so, create a shortcut to the ps1 file. Edit the properties of the shortcut and change the target to read:
-> PowerShell.exe -ExecutionPolicy Bypass -File "`<pathtoPS1file`>"
-
-Right-click the shortcut and run as administrator, or edit the shortcut properties (under Advanced) to run as administrator.
-For completeness, you can also change the icon of the shortcut to the icon file included in the bin directory.
