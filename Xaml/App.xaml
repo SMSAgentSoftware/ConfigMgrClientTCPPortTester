@@ -1,0 +1,167 @@
+﻿<Window 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="ConfigMgr Client TCP Port Tester" SizeToContent="Height" Width="800" WindowStartupLocation="CenterScreen" MinWidth="800" MaxWidth="800" ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ComboBox Grid.Row="0" Name="SelectTest" Width="Auto" Controls:TextBoxHelper.Watermark="Select Test" ItemsSource="{Binding [17]}" Margin="1" Foreground="Purple"/>
+        <StackPanel Grid.Row="1">
+            <GroupBox Name="Client" Header="Client Ports (Inbound)" Margin="1">
+                <GroupItem>
+                    <StackPanel>
+                        <Button Name="ClientGo" HorizontalAlignment="Right" Content="GO" Width="100" />
+                        <DataGrid Name="ClientGrid" Margin="2" ItemsSource="{Binding [0].DefaultView}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" MinHeight="150">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Port" Binding="{Binding Path=Port}" Width="100" />
+                                <DataGridTemplateColumn Header="Status" Width="80">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Path=Icon}" Width="18" Height="18" Margin="1"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Purpose" Binding="{Binding Path=Purpose}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </GroupItem>
+            </GroupBox>
+            <GroupBox Name="MP" Header="Management Point (Outbound)" Margin="1">
+                <GroupItem>
+                    <StackPanel>
+                        <DockPanel LastChildFill="True">
+                            <TextBox Name="MPName" CharacterCasing="Upper" Controls:TextBoxHelper.Watermark="Management Point Name" Width="250" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.ClearTextButton="True" Margin="0,0,1,0"/>
+                            <TextBox Name="MPPingResult" Text="{Binding [8]}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Ping Result" Width="100" IsReadOnly="True" Margin="0,0,1,0"/>
+                            <TextBox Name="MPIPAddress" Text="{Binding [9]}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="IP Address" Width="100" IsReadOnly="True" Margin="0,0,1,0"/>
+                            <TextBox Name="MPRoundTrip" Text="{Binding [10]}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Round trip (ms)" Width="100" IsReadOnly="True" Margin="0,0,1,0"/>
+                            <Button Name="MPGo" HorizontalAlignment="Right" Content="GO" Width="100" />
+                        </DockPanel>
+                        <DataGrid Name="MPGrid" Margin="2" ItemsSource="{Binding [0].DefaultView}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" MinHeight="150">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Port" Binding="{Binding Path=Port}" Width="100" />
+                                <DataGridTemplateColumn Header="Status" Width="80">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Path=Icon}" Width="18" Height="18" Margin="1"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Purpose" Binding="{Binding Path=Purpose}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </GroupItem>
+            </GroupBox>
+            <GroupBox Name="DP" Header="Distribution Point (Outbound)" Margin="1">
+                <GroupItem>
+                    <StackPanel>
+                        <DockPanel LastChildFill="True">
+                            <TextBox Name="DPName" CharacterCasing="Upper" Controls:TextBoxHelper.Watermark="Distribution Point Name" Width="250" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.ClearTextButton="True" Margin="0,0,1,0"/>
+                            <TextBox Name="DPPingResult" Text="{Binding [11]}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Ping Result" Width="100" IsReadOnly="True" Margin="0,0,1,0"/>
+                            <TextBox Name="DPIPAddress" Text="{Binding [12]}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="IP Address" Width="100" IsReadOnly="True" Margin="0,0,1,0"/>
+                            <TextBox Name="DPRoundTrip" Text="{Binding [13]}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Round trip (ms)" Width="100" IsReadOnly="True" Margin="0,0,1,0"/>
+                            <Button Name="DPGo" HorizontalAlignment="Right" Content="GO" Width="100" />
+                        </DockPanel>
+                        <DataGrid Name="DPGrid" Margin="2" ItemsSource="{Binding [0].DefaultView}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" MinHeight="150">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Port" Binding="{Binding Path=Port}" Width="100" />
+                                <DataGridTemplateColumn Header="Status" Width="80">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Path=Icon}" Width="18" Height="18" Margin="1"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Purpose" Binding="{Binding Path=Purpose}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </GroupItem>
+            </GroupBox>
+            <GroupBox Name="SUP" Header="Software Update Point (Outbound)" Margin="1">
+                <GroupItem>
+                    <StackPanel>
+                        <DockPanel LastChildFill="True">
+                            <TextBox Name="SUPName" CharacterCasing="Upper" Controls:TextBoxHelper.Watermark="Software Update Point Name" Width="250" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.ClearTextButton="True" Margin="0,0,1,0"/>
+                            <TextBox Name="SUPPingResult" Text="{Binding [14]}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Ping Result" Width="100" IsReadOnly="True" Margin="0,0,1,0"/>
+                            <TextBox Name="SUPIPAddress" Text="{Binding [15]}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="IP Address" Width="100" IsReadOnly="True" Margin="0,0,1,0"/>
+                            <TextBox Name="SUPRoundTrip" Text="{Binding [16]}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Round trip (ms)" Width="100" IsReadOnly="True" Margin="0,0,1,0"/>
+                            <Button Name="SUPGo" HorizontalAlignment="Right" Content="GO" Width="100" />
+                        </DockPanel>
+                        <DataGrid Name="SUPGrid" Margin="2" ItemsSource="{Binding [0].DefaultView}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" MinHeight="150">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Port" Binding="{Binding Path=Port}" Width="100" />
+                                <DataGridTemplateColumn Header="Status" Width="80">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Path=Icon}" Width="18" Height="18" Margin="1"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="Purpose" Binding="{Binding Path=Purpose}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </GroupItem>
+            </GroupBox>
+            <GroupBox Name="Custom" Header="Custom Port Test" Margin="1">
+                <GroupItem>
+                    <StackPanel>
+                        <DockPanel LastChildFill="True">
+                            <TextBox Name="CustomPort" CharacterCasing="Upper" Controls:TextBoxHelper.Watermark="Port" Controls:TextBoxHelper.UseFloatingWatermark="True" Width="100" Margin="0,0,1,0"/>
+                            <ComboBox Name="CustomDirection" Controls:TextBoxHelper.Watermark="Direction" Width="120" Controls:TextBoxHelper.UseFloatingWatermark="True" Margin="0,0,1,0">
+                                <ComboBoxItem>
+                                    INBOUND
+                                </ComboBoxItem>
+                                <ComboBoxItem>
+                                    OUTBOUND
+                                </ComboBoxItem>
+                            </ComboBox>
+                            <TextBox Name="CustomDestination" CharacterCasing="Upper" Controls:TextBoxHelper.Watermark="Destination" Controls:TextBoxHelper.UseFloatingWatermark="True" Width="250" Controls:TextBoxHelper.ClearTextButton="True" Margin="0,0,1,0"/>
+                            <Button Name="CustomAdd" Content="Add" Width="80" Margin="1" />
+                            <Button Name="CustomClear" Content="Clear Grid" Width="100" Margin="1"/>
+                            <Button Name="CustomGo" HorizontalAlignment="Right" Content="GO" Width="100" />
+                        </DockPanel>
+                        <DataGrid Name="CustomGrid" Margin="2" ItemsSource="{Binding [0].DefaultView}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" MinHeight="150">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Port" Binding="{Binding Path=Port}" Width="100" />
+                                <DataGridTextColumn Header="Destination" Binding="{Binding Path=Destination}" Width="250" />
+                                <DataGridTemplateColumn Header="Status" Width="80">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="{Binding Path=Status}" Width="18" Height="18" Margin="1"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </GroupItem>
+            </GroupBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2">
+            <Controls:MetroProgressBar IsIndeterminate="{Binding [0]}" />
+            <StatusBar Background="White">
+                <StatusBarItem>
+                    <TextBlock Name="Status1" TextWrapping="Wrap" Text="{Binding [1]}" Foreground="{Binding [2]}" VerticalAlignment="Center"/>
+                </StatusBarItem>
+            </StatusBar>
+        </StackPanel>
+    </Grid>
+</Window>

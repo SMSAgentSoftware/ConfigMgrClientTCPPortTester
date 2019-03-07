@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConfigMgr_Port_Tester>
+	<ServerDefaults>
+		<ManagementPoint>
+			<Value></Value>
+		</ManagementPoint>
+		<SoftwareUpdatePoint>
+			<Value></Value>
+		</SoftwareUpdatePoint>
+		<DistributionPoint>
+			<Value></Value>
+		</DistributionPoint>
+	</ServerDefaults>
+	<PortDefaults>
+		<LocalPorts>
+			<Port Name="80" Purpose="HTTP Communication"/>
+			<Port Name="443" Purpose="HTTPS Communication"/>
+			<Port Name="445" Purpose="SMB"/>
+			<Port Name="135" Purpose="Remote Assistance / Remote Desktop"/>
+			<Port Name="2701" Purpose="Remote Control"/>
+			<Port Name="3389" Purpose="Remote Assistance / Remote Desktop"/>
+		</LocalPorts>
+		<ManagementPointPorts>
+			<Port Name="80" Purpose="HTTP Communication"/>
+			<Port Name="443" Purpose="HTTPS Communication"/>
+			<Port Name="445" Purpose="SMB"/>
+			<Port Name="135" Purpose="RPC"/>
+			<Port Name="10123" Purpose="Client Notification (will fallback to http/https)"/>
+		</ManagementPointPorts>
+		<DistributionPointPorts>
+			<Port Name="80" Purpose="HTTP Communication"/>
+			<Port Name="443" Purpose="HTTPS Communication"/>
+		</DistributionPointPorts>
+		<SoftwareUpdatePointPorts>
+			<Port Name="80" Purpose="HTTP Communication"/>
+			<Port Name="443" Purpose="HTTPS Communication"/>
+			<Port Name="8530" Purpose="WSUS"/>
+			<Port Name="8531" Purpose="WSUS Secure"/>
+		</SoftwareUpdatePointPorts>
+	</PortDefaults>
+</ConfigMgr_Port_Tester>
