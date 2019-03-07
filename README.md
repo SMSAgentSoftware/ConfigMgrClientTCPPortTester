@@ -6,7 +6,7 @@ WPF / PowerShell tool to test port connectivity for SCCM Clients
 This tool is for TCP port testing on SCCM client systems. It checks the local ports required by the SCCM client as well as connectivity to management point, distribution point and sofware update point servers.
 In addition, there is a custom port tester for testing any inbound or outbound port to any destination.
 
-See my blog for more details.
+See my [blog](https://smsagent.blog/2019/03/07/configmgr-client-tcp-port-tester/) for more details.
 
 ## Requirements
 * Windows 8.1 + / Windows Server 2012 R2 +
